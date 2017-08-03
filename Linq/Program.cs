@@ -14,18 +14,30 @@ namespace Linq
             var a = 10;
             a.Between(2, 11);
 
+            foreach (var i in Iterator()) {
+                Console.WriteLine(i);
+            }
+
             var numbers = new List<int>()
             {
                 1,2,3
             };
 
-            numbers.Where(Predicate);
-
+            var result = numbers.Where(Predicate);
             numbers.Where(n => n > 1);//hace lo mismo que arriba
+            foreach (var value in result) { }
         }
 
         static bool Predicate(int value) {
+            Console.WriteLine("He entrado");
             return value > 1;
+        }
+
+        static IEnumerable<int> Iterator() {
+
+            for (var i = 0; 1 < 100; i++) {
+                yield return i;
+            }
         }
     }
 
